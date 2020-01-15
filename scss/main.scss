@@ -1,6 +1,83 @@
-$primary-color: #444;
+@import 'config'; // import
+
+* {
+    box-sizing: border-box; // inside padding won't affect width of boxx
+}
+
+// The CSS element Selector
+//The element selector selects HTML elements based on the element name.
 
 body {
+    @include backGround;
     background: $primary-color;
+    color: rgb(255, 255, 255);
+    height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5; // ruimte tussen lijnen
+}
+
+// Headings
+
+h1, h2, h3 {
+    margin: 0;
+    font-weight: 400;
+
+    &.lg-heading { // & is hetzelfde als h1.lg-heading
+        font-size: 6rem; // 1 rem = 16 pixels (default HTML pixel size) default HTML overschrijven met html { font-size: ..}
+    }
+
+    &.sm-heading {
+        margin-bottom: 2rem;
+        padding: 0.2rem 1rem;
+        background: rgba(lighten($primary-color, $amount: 2), 0.5); 
+        // lighten is SASS functie / rgba om de achterground transparant te maken bij achtergrondfoto
+    }
+
+}
+
+a {
     color: #fff;
+    text-decoration: none;
+}
+
+header {
+    position: fixed;
+    z-index: 2; // start van 0 -> 1 -> 2 op elkaar, dus 2 ligt altijd bovenaan
+    width: 100%;
+}
+
+// The class selector selects HTML elements with a specific class attribute.
+// To select elements with a specific class, write a period (.) character, followed by the class name.
+.text-secondary {
+    color: $secondary-color;
+}
+
+main {
+    padding: 4rem;
+    height: 100%;
+
+    .icons { // nested dus beinvloed alleen icons in de main    
+        margin-top: 1rem;
+
+        a {
+            padding: 0.4rem;
+
+            &:hover {
+                color: $secondary-color;
+                @include easeOut(); // bij mixin include gebruiken om op te roepen
+            }
+        }
+    }
+
+    &#home {// elke main met ID home
+        overflow: hidden; // nooit scrollbars tonen
+        h1 {
+            margin-top: 20vh; 
+            // viewport height This unit is based on the height of the viewport.
+            //   A value of 1vh is equal to 1% of the viewport height.
+            // Viewport Width (vw) — This unit is based on the width of the viewport.
+            //   A value of 1vw is equal to 1% of the viewport width.
+        }
+    }
 }
