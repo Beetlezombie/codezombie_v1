@@ -40,10 +40,114 @@
                 transform: rotate(-45deg) translate(7px, -6px);
             }
 
-            // lijn 4
-
-
-
         }
     }
+}
+
+// menu overlay
+
+.menu {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: 0.9;
+    visibility: hidden;
+
+    // https://css-tricks.com/the-sass-ampersand/
+    // The & always refers to the parent selector when nesting.
+    // Think of the & as being removed and replaced with the parent selector
+    &.show { // op klik button wordt show class geadd
+        visibility: visible;
+    }
+
+    // nesting wordt menu-branding menu-nav
+    // de display flex geldt nu voor beide columns beide 50%
+    &-branding, 
+    &-nav { 
+        display: flex; // https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+        flex-flow: column wrap; // boven naar beneden
+        align-items: center;
+        justify-content: center; // This defines the alignment along the main axis.    
+        float: left;
+        width: 50%;
+        height: 100vh; // viewport height
+        overflow: hidden; // geen scrollbar    
+    }
+
+    &-nav {
+        margin: 0;
+        padding: 0;
+        background: darken($primary-color, 5);
+        list-style: none; // geen lijst bolletjes
+        transform: translate3d(0, 100%, 0); // https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/translate3d
+        @include easeOut;
+
+        &.show {
+            // slide in from top
+            transform: translate3d(0, 0, 0);
+        }
+
+    }
+
+    // linkse kant
+
+    &-branding {
+        background: $primary-color;
+        transform: translate3d(0, -100%, 0);
+        @include easeOut;
+
+        &.show {
+            // slide in 
+            transform: translate3d(0, 0, 0);
+        }
+
+        .portrait {
+            width: 250px;
+            height: 250px;
+            background: url(../img/news.png);
+            border-radius: 50%;
+            border: solid 3px $tertiary-color;
+        }
+    }
+
+    .nav-item {
+        transform: translate3d(600px, 0, 0);
+        @include easeOut;
+
+        &.show {
+            // slide inright
+            transform: translate3d(0, 0, 0);
+        }
+
+        &.current > a { // > a = binnen in de current de link
+            color: $secondary-color;
+        }
+    }
+
+    .nav-link {
+        display: inline-block;
+        position: relative;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding: 1rem 0;
+        font-weight: 300;
+        color: white;
+        text-decoration: none;
+        @include easeOut;
+
+        &:hover {
+            color: $secondary-color;
+        }
+
+    }
+
+
+}
+
+// delay voor nav-item slide in
+
+@for $x from 1 through 4 {
+    .nav-item:nth-child(#{$x}) {
+        transition-delay: $x * 0.1s;
+     }// variable #{..}
 }
