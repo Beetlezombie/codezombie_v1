@@ -55,9 +55,9 @@
     .menu-branding .portrait {
       width: 250px;
       height: 250px;
-      background: url(../img/news.png);
+      background: url(../img/flare250.png);
       border-radius: 50%;
-      border: solid 3px #000000; }
+      border: solid 3px #fffb00; }
   .menu .nav-item {
     transform: translate3d(600px, 0, 0);
     transition: all 1.5s ease-out; }
@@ -113,7 +113,7 @@
     height: 25vh;
     transform: translate3d(100, 0, 0); }
     .menu-branding .portrait {
-      background: url(../img/news.png);
+      background: url(../img/flare.png);
       width: 150px;
       height: 150px; } }
 
