@@ -30,3 +30,33 @@ $background-opacity: 0.5;
         }
     }    
 }
+
+// Media query mixins
+
+@mixin mediaSm {
+    @media screen and (max-width: 500px) { // CSS hier geldt alleen voor schermen van 500px of minderr
+        @content;
+    }
+    
+}
+
+@mixin mediaMd {
+    @media screen and (max-width: 768px) { // CSS hier geldt alleen voor schermen van 768px of minderr
+        @content;
+    }
+    
+}
+
+@mixin mediaLg {
+    @media screen and (min-width: 769px) and (max-width: 1170px) { // 
+        @content;
+    }
+    
+}
+
+@mixin mediaXl {
+    @media screen and (min-width: 1171px) { // 
+        @content;
+    }
+    
+}
