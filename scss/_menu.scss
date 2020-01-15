@@ -1,0 +1,49 @@
+// menu button
+
+.menu-btn {
+    position: absolute;
+    z-index: 3;
+    right: 35px;
+    top: 35px;
+    cursor: pointer;
+    @include easeOut;
+
+    .btn-line {
+        width: 28px;
+        height: 3px;
+        margin: 0 0 5px 0;
+        background: white;
+        @include easeOut;
+    }
+
+    // roterend kruisje
+
+    &.close { // in main.js toggleMenu bepaald
+        transform: rotate(180deg);
+
+        .btn-line {
+
+            // met pseudoselector nthchild elke lijn afzonderlijk
+
+            // lijn 1 roteren
+            &:nth-child(1) { // 1 is eerste lijn etc etc
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            // lijn 2 verbergen
+            &:nth-child(2) { 
+                opacity: 0;
+            }
+
+            // lijn 3 roteren
+            &:nth-child(3) { 
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            // lijn 4
+
+
+
+        }
+    }
+}
