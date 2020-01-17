@@ -90,7 +90,7 @@
 .nav-item:nth-child(4) {
   transition-delay: 0.4s; }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 501px) and (max-width: 768px) {
   main {
     align-items: center;
     text-align: center; }
@@ -119,14 +119,34 @@
 
 @media screen and (max-width: 500px) {
   main#home h1 {
-    margin-top: 10vh; } }
+    margin-top: 10vh;
+    font-size: 3rem; }
+  ul.menu-nav,
+  div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0; }
+    ul.menu-nav.show,
+    div.menu-branding.show {
+      transform: translate3d(0, 0, 0); }
+  .menu-nav {
+    height: 75vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px; }
+  .menu-branding {
+    height: 25vh;
+    transform: translate3d(100, 0, 0); }
+    .menu-branding .portrait {
+      background: url(../img/flare.png);
+      width: 150px;
+      height: 150px; } }
 
 * {
   box-sizing: border-box; }
 
 body {
   background: black;
-  color: white;
+  color: #ffffff;
   height: 100%;
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -135,7 +155,29 @@ body {
     background: url(../img/emergence.jpg);
     background-attachment: fixed;
     background-size: cover; }
+    @media screen and (max-width: 415px) {
+      body#bg-img {
+        background: url(../img/emergence-mobile.png);
+        background-attachment: fixed;
+        background-size: cover;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%; } }
     body#bg-img:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: rgba(0, 0, 0, 0.5); }
+  body#bg-img-about {
+    background: url(../img/pyramid.jpg);
+    background-attachment: fixed;
+    background-size: cover; }
+    body#bg-img-about:after {
       content: '';
       position: absolute;
       top: 0;
@@ -166,6 +208,8 @@ header {
 
 .text-secondary {
   color: #fffb00; }
+  .text-secondary-about {
+    color: #3a0000; }
 
 main {
   padding: 4rem;
@@ -181,3 +225,36 @@ main {
     overflow: hidden; }
     main#home h1 {
       margin-top: 20vh; }
+
+.about-info {
+  display: grid;
+  grid-gap: 30px;
+  grid-template-areas: 'bioimage bio bio' 'job1 job2 job3';
+  grid-template-columns: repeat(3, 1fr); }
+  .about-info .bio-img {
+    grid-area: bioimage;
+    margin: auto;
+    border-radius: 50%;
+    border: #fffb00 3px solid; }
+  .about-info .bio {
+    grid-area: bio;
+    padding: 0.5rem 0.5rem;
+    font-size: 1.5rem;
+    background: rgba(48, 0, 0, 0.35); }
+  .about-info .job1 {
+    grid-area: job1; }
+  .about-info .job2 {
+    grid-area: job2; }
+  .about-info .job3 {
+    grid-area: job3; }
+  .about-info .job {
+    background: rgba(48, 0, 0, 0.35);
+    padding: 0.5rem;
+    border-bottom: #3a0000 5px solid; }
+
+#main-footer {
+  text-align: center;
+  padding: 1rem;
+  background: black;
+  color: #ffffff;
+  height: 60px; }

@@ -1,8 +1,13 @@
 $primary-color: rgb(0, 0, 0);
 $secondary-color: #fffb00;
 $tertiary-color: #000000;
+$about-color: #3a0000;
 $show-home-image: true;
+$show-mobile-image: true;
+$show-about-image: true;
 $home-image: url(../img/emergence.jpg);
+$home-image-mobile: url(../img/emergence-mobile.png);
+$about-image: url(../img/pyramid.jpg);
 $background-opacity: 0.5;
 
 @mixin easeOut { // functie
@@ -12,6 +17,15 @@ $background-opacity: 0.5;
 @mixin backGround { 
     @if $show-home-image { // @ nodig in SASS
         &#bg-img { // ID van de body, wordt via mixin genest in de body via de @include
+            @media screen and (max-width:415px) {
+                background: $home-image-mobile;
+                background-attachment: fixed;
+                background-size: cover;
+                top: 0; // startpositie
+                right: 0; // startpositie
+                width: 100%;
+                height: 100%;
+              }
             background: $home-image;
             background-attachment: fixed; //A background-image that will not scroll with the page (fixed)
             background-size: cover; // Resize the background image to cover the entire container,
@@ -31,6 +45,40 @@ $background-opacity: 0.5;
     }    
 }
 
+// about page
+@mixin backGroundAbout { 
+    @if $show-about-image { // @ nodig in SASS
+        &#bg-img-about { // ID van de body, wordt via mixin genest in de body via de @include
+            background: $about-image;
+            background-attachment: fixed; //A background-image that will not scroll with the page (fixed)
+            background-size: cover; // Resize the background image to cover the entire container,
+                                    // even if it has to stretch the image or cut a little bit off one of the edges
+
+            &:after {//pseudo element, bestaat niet in de html, maar wordt hier achter de bg-img ID gemaakt
+                content: ''; // lege content
+                position: absolute; // cover all
+                top: 0; // startpositie
+                right: 0; // startpositie
+                width: 100%;
+                height: 100%;
+                z-index: -1; // om de overlay achter de tekst lg-heading etc te duwen
+                background: rgba($tertiary-color, $background-opacity); // rgba nodig (redgreenblueALFA)
+            }
+        }
+    }    
+}
+
+// set text color
+
+@function set-text-color($color) {
+    @if (lightness($color) > 40) {
+        @return #000000;
+        }   @else {
+        
+        @return #ffffff;
+    }
+}
+
 // Media query mixins
 
 @mixin mediaSm {
@@ -41,7 +89,7 @@ $background-opacity: 0.5;
 }
 
 @mixin mediaMd {
-    @media screen and (max-width: 768px) { // CSS hier geldt alleen voor schermen van 768px of minderr
+    @media screen and (min-width: 501px) and (max-width: 768px) { // 
         @content;
     }
     

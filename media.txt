@@ -1,0 +1,35 @@
+@media Bubbling
+
+Sass does provide what I consider to be a pretty killer feature for authoring @media when you nest them inside other selectors. If you add a @media query by nesting it inside a selector Sass will "bubble" that @media query and the new rule outside of the nest and back out to the root of your style sheet.
+
+I use @media un-nested (as mentioned above) when I'm setting up large-scale changes like a responsive master grid, but I find that I need to make small adjustments much more often. For example, lets say you have a profile picture that looks great large and floated to the left on a desktop, but needs to shrink on a smaller screen. It also needs to stop floating on a really wide screen.
+
+In Sass we can write that like this.
+
+.profile-pic {
+  float: left;
+  width: 250px;
+  @media screen and (max-width: 320px) {
+    width: 100px;
+  }
+  @media screen and (min-width: 1200px) {
+    float: none;
+  }
+}
+
+Sass will see this and know that you want to apply that query to the selector it's nested in. It compiles to CSS like so:
+
+.profile-pic {
+  float: left;
+  width: 250px;
+}
+@media screen and (max-width: 320px) {
+  .profile-pic {
+    width: 100px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .profile-pic {
+    float: none;
+  }
+}
